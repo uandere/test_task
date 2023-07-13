@@ -7,7 +7,7 @@ cmake_minimum_required(VERSION 3.15)
 set(PROJECT_NAME test_task)
 project(${PROJECT_NAME} C CXX) # project(${PROJECT_NAME} C CXX ASM)
 
-set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD 17)
 
 ##########################################################
 # User configurable options of the template
