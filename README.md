@@ -39,7 +39,7 @@ Next, let's compile the program. To do this, you shall use the `compile.sh` bash
 ```
 
 We're passing `-O` option to indicate that we want to compile it with **maximum** compiler optimizations,
-and `-d` to tell the compiler **ignore** all debug information. This will produce the most performant version
+and `-d` to tell the compiler to **ignore** all debug information. This will produce the most performant version
 of the tool. This command will also **install** our binary, which you can then find in `/bin` subdirectory.
 
 Finally, to use this tool, we can use the helper information:
@@ -60,16 +60,16 @@ Good! Let's finally try to process some video:
 ```
 
 Here, we're passing samples/input.mp4 file (it is included inside the repo) to 
-the program. The resulting file will have location `samples/output.mkv`.
+the program. The resulting file will have the following location: `samples/output.mkv`.
 
-We can also use the **verbose** version of the tool
+We can also use the **verbose** version of the tool:
 
 ```shell
 ./bin/test_task samples/input.mp4 samples/output.mkv --verbose
 ```
 
 This will do the same job, but will additionally provide us with useful
-progress information to track program's state:
+progress information to track the program's state:
 
 ```
 muxed_completed: (00:00:39): 0 / 5 seconds ( 0.0 %)
@@ -126,4 +126,4 @@ faster, depending on how good your hardware is for av1 codec.
 
 It was cool to play around using GStreamer, discovering its philosophy and primary 
 tools. I experimented with many codecs and containers, comparing performance and 
-compability for each of them.
+compatibility for each of them.
