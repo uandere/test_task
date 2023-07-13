@@ -21,7 +21,7 @@ You need to make sure these tools are installed on your system:
 
 - GStreamer (standard installation, follow this [link](https://gstreamer.freedesktop.org/documentation/installing/on-linux.html?gi-language=c))
 - Cmake (3.15+)
-- g++/clang/msvc (with C++17 support)
+- g++/clang/msvc (with C++23 support)
 
 ## Usage
 
