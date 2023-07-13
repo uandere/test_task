@@ -1,20 +1,33 @@
 #include <string>
+#include <tuple>
 #include <gst/gst.h>
 #include "utils.h"
 
 int main(int argc, char *argv[]) {
 
     // Parsing arguments
-    const auto &[inputFile, outputFile] = parse_args(argc, argv);
+    const auto &[inputFile, outputFile, is_verbose] = parse_args(argc, argv);
 
-    // Initialize GStreamer
+    // Initializing GStreamer
     gst_init(nullptr, nullptr);
+
+    // Providing progress information
+    std::string audio_progress = "";
+    std::string video_progress = "";
+    std::string mux_progress = "";
+
+    if (is_verbose) {
+        audio_progress = "! progressreport name=audio_processed:";
+        video_progress = "! progressreport name=video_processed:";
+        mux_progress   = "! progressreport name=muxed_completed:";
+    }
 
     // Pipeline description string
     std::string pipeline_description_str = std::string("filesrc location=") + inputFile +
-                                           " ! qtdemux name=demux demux.audio_0 ! queue ! decodebin ! progressreport name=audio:"
-                                           " ! audioconvert ! audioresample ! opusenc ! mux.  demux.video_0 ! queue ! decodebin"
-                                           " ! progressreport name=video: ! videoconvert ! av1enc ! mux. matroskamux name=mux"
+                                           " ! qtdemux name=demux demux.audio_0 ! queue ! decodebin " + audio_progress +
+                                           " ! audioconvert ! audioresample ! opusenc "
+                                           " ! mux.  demux.video_0 ! queue ! decodebin " + video_progress +
+                                           " ! videoconvert ! av1enc ! mux. matroskamux name=mux " + mux_progress +
                                            " ! filesink location=" + outputFile;
     const gchar *pipeline_description = pipeline_description_str.c_str();
 
@@ -70,7 +83,7 @@ int main(int argc, char *argv[]) {
         gst_message_unref(msg);
     }
 
-    // Stop and cleanup the pipeline
+    // Cleanup
     gst_element_set_state(pipeline, GST_STATE_NULL);
     gst_object_unref(GST_OBJECT(pipeline));
 

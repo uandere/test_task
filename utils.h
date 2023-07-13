@@ -11,6 +11,6 @@ enum class error_codes {
     WrongOutputFileExt = 4,
 };
 
-[[nodiscard]] std::pair<std::string, std::string> parse_args(int argc, char** argv);
+[[nodiscard]] std::tuple<std::string, std::string, bool> parse_args(int argc, char** argv);
 
 #endif //TEST_TASK_UTILS_H
