@@ -8,7 +8,7 @@
     std::string outputFile;
 
     // Checking if the correct number of arguments is provided, exiting otherwise
-    if (argc < 3) {
+    if (argc < 3 || argc > 4) {
         g_printerr("Usage: %s <input_file> <output_file> --verbose[optional]\n", argv[0]);
         exit(static_cast<int>(error_codes::WrongNumberOfArguments));
     }
