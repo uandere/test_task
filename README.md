@@ -13,6 +13,7 @@ This project aims to process media in the following manner:
 
 The pipeline of the program can be represented as:
 
+![image](https://github.com/uandere/test_task/assets/136515158/c76dcd2b-2bd3-4b48-93ce-0f039c7b43d6)
 
 
 [//]: # (<p style="color: rebeccapurple">fdfd</p>)
