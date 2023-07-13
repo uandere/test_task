@@ -18,8 +18,13 @@
     inputFile = argv[1];
     outputFile = argv[2];
 
-    if (argc == 4 && std::string(argv[3]) == std::string("--verbose")) {
-        verbose = true;
+    if (argc == 4) {
+        if (std::string(argv[3]) == std::string("--verbose")) {
+            verbose = true;
+        } else {
+            g_printerr("Usage: %s <input_file> <output_file> --verbose[optional]\n", argv[0]);
+            exit(static_cast<int>(error_codes::WrongNumberOfArguments));
+        }
     }
 
     // Checking output file extension: must be .mkv
