@@ -1,22 +1,21 @@
 #include <string>
-#include <utility>
 #include <gst/gst.h>
 #include "utils.h"
 
 int main(int argc, char *argv[]) {
 
     // Parsing arguments
-    const auto& [inputFile, outputFile] = parse_args(argc, argv);
+    const auto &[inputFile, outputFile] = parse_args(argc, argv);
 
     // Initialize GStreamer
     gst_init(nullptr, nullptr);
 
     // Pipeline description string
     std::string pipeline_description_str = std::string("filesrc location=") + inputFile +
-            " ! qtdemux name=demux demux.audio_0 ! queue ! decodebin ! progressreport name=audio:"
-            " ! audioconvert ! audioresample ! opusenc ! mux.  demux.video_0 ! queue ! decodebin"
-            " ! progressreport name=video: ! videoconvert ! av1enc ! mux. matroskamux name=mux"
-            " ! filesink location=" + outputFile;
+                                           " ! qtdemux name=demux demux.audio_0 ! queue ! decodebin ! progressreport name=audio:"
+                                           " ! audioconvert ! audioresample ! opusenc ! mux.  demux.video_0 ! queue ! decodebin"
+                                           " ! progressreport name=video: ! videoconvert ! av1enc ! mux. matroskamux name=mux"
+                                           " ! filesink location=" + outputFile;
     const gchar *pipeline_description = pipeline_description_str.c_str();
 
     // Creating the pipeline from the description string
@@ -55,7 +54,6 @@ int main(int argc, char *argv[]) {
                     error_code = static_cast<int>(error_codes::UnableToOpenInputFile);
                 } else {
                     error_code = static_cast<int>(error_codes::PipelineInternalError);
-
                 }
                 g_clear_error(&err);
                 g_free(debug_info);
@@ -65,6 +63,7 @@ int main(int argc, char *argv[]) {
                 break;
             default:
                 g_printerr("Unexpected message received\n");
+                error_code = static_cast<int>(error_codes::PipelineInternalError);
                 break;
         }
 

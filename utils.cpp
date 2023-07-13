@@ -1,7 +1,3 @@
-//
-// Created by nazar on 12.07.23.
-//
-
 #include <string>
 #include <gst/gst.h>
 #include "utils.h"

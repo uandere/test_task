@@ -1,7 +1,3 @@
-//
-// Created by nazar on 12.07.23.
-//
-
 #ifndef TEST_TASK_UTILS_H
 #define TEST_TASK_UTILS_H
 
