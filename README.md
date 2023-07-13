@@ -122,6 +122,9 @@ In this case, the input video was ~2.8 MB, the output is ~118 MB. On my machine,
 overall time taken for processing is ~36 mins, but on your machine it can be much
 faster, depending on how good your hardware is for av1 codec.
 
+The targeted operating system was Linux, but the tool is **confirmed** to run on 
+macOS (Intel-based) as well.
+
 ## Conclusions
 
 It was cool to play around using GStreamer, discovering its philosophy and primary 
